@@ -2,10 +2,6 @@ import json
 from openai import OpenAI
 import asyncio
 
-client = OpenAI(
-    api_key = 'sk-49aaa14d7a9248ad84bc58461cc961e4',
-    base_url = "https://api.deepseek.com"
-)
 async def generate_conversations_data(book_name:str,role_name:str,cleaned_chunks_data_path:str,formatted_data_save_path:str):#调用deepseek生成问题和回答，进行构造数据集
     get_role_description_prompt = """
     请根据《{book_name}》中的{role_name}，生成一段可以用于角色扮演的角色设定，风格参照下面的例子，包括姓名、身份、性格、语言风格等，根据你对角色的理解以及角色扮演的需求，你可以自行添加你认为需要的属性，或删除你认为不需要的属性。只需要给我角色设定的相关内容，其他任何内容不要发给我。
